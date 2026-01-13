@@ -1,4 +1,4 @@
-import got, { OptionsInit } from 'got'
+import got, { NormalizedOptions } from 'got'
 import { appConfig } from './config.js'
 import crypto from 'crypto'
 
@@ -18,7 +18,7 @@ function generateNonce (ts:string): string {
   return `${getStrWithLength(3)}-${getStrWithLength(12)}${getStrWithLength(7).toUpperCase()}${ts}`
 }
 
-function generateSignature (options:OptionsInit, nonce: string, timestamp: string, bodyMd5B64: string): string {
+function generateSignature (options:NormalizedOptions, nonce: string, timestamp: string, bodyMd5B64: string): string {
   const rawStr = `${options.headers?.accept ?? ''}
 x-api-signature-nonce:${nonce}
 x-api-signature-version:1.0
