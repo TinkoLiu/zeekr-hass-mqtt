@@ -22,7 +22,7 @@ class HassService {
       altitude: this.vehicleStatus?.basicVehicleStatus.position.altitude,
       speed: this.vehicleStatus?.basicVehicleStatus.speed,
       course: this.vehicleStatus?.basicVehicleStatus.direction,
-      battery_level: this.vehicleStatus?.additionalVehicleStatus.maintenanceStatus.mainBatteryStatus.chargeLevel
+      battery: parseInt(this.vehicleStatus?.additionalVehicleStatus.maintenanceStatus.mainBatteryStatus.chargeLevel ?? '0')
     }
     const locationTopic = `homeassistant/device_tracker/${this.identifier}/state`
     mqClient.publish(locationTopic, JSON.stringify(locationData))
@@ -69,6 +69,8 @@ class HassService {
 
   updateVehicleStatus (status: VehicleStatus) {
     this.vehicleStatus = status
+    this.updateDeviceTrackerConfig()
+    this.updateSensorConfig()
     this.sendLocationUpdate()
     this.sendSensorUpdate()
   }
