@@ -1,0 +1,27 @@
+{
+  "name": "zeekr-hass-mqtt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@9.13.2+sha512.88c9c3864450350e65a33587ab801acf946d7c814ed1134da4a924f6df5a2120fd36b46aab68f7cd1d413149112d53c7db3a4136624cfd00ff1846a0c6cef48a",
+  "devDependencies": {
+    "@types/node": "^25.0.7",
+    "eslint": "^9.39.2",
+    "neostandard": "^0.12.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "got": "^14.6.6",
+    "mqtt": "^5.14.1",
+    "zod": "^4.3.5"
+  }
+}
