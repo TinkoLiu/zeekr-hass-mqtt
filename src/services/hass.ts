@@ -19,9 +19,9 @@ class HassService {
       latitude: Number((parseInt(this.vehicleStatus?.basicVehicleStatus.position.latitude ?? '0') / (60 * 60 * 1000)).toFixed(7)),
       longitude: Number((parseInt(this.vehicleStatus?.basicVehicleStatus.position.longitude ?? '0') / (60 * 60 * 1000)).toFixed(7)),
       gps_accuracy: 5,
-      altitude: this.vehicleStatus?.basicVehicleStatus.position.altitude,
-      speed: this.vehicleStatus?.basicVehicleStatus.speed,
-      course: this.vehicleStatus?.basicVehicleStatus.direction,
+      altitude: parseInt(this.vehicleStatus?.basicVehicleStatus.position.altitude ?? '0'),
+      speed: parseFloat(this.vehicleStatus?.basicVehicleStatus.speed ?? '0'),
+      course: parseInt(this.vehicleStatus?.basicVehicleStatus.direction ?? '0'),
       battery: parseInt(this.vehicleStatus?.additionalVehicleStatus.maintenanceStatus.mainBatteryStatus.chargeLevel ?? '0')
     }
     const locationTopic = `homeassistant/device_tracker/${this.identifier}/state`
