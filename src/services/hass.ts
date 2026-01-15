@@ -22,7 +22,7 @@ class HassService {
       altitude: parseInt(this.vehicleStatus?.basicVehicleStatus.position.altitude ?? '0'),
       speed: parseFloat(this.vehicleStatus?.basicVehicleStatus.speed ?? '0'),
       course: parseInt(this.vehicleStatus?.basicVehicleStatus.direction ?? '0'),
-      battery: parseInt(this.vehicleStatus?.additionalVehicleStatus.maintenanceStatus.mainBatteryStatus.chargeLevel ?? '0')
+      battery: parseInt(this.vehicleStatus?.additionalVehicleStatus.electricVehicleStatus.chargeLevel ?? '0')
     }
     const locationTopic = `homeassistant/device_tracker/${this.identifier}/state`
     mqClient.publish(locationTopic, JSON.stringify(locationData))
@@ -32,7 +32,7 @@ class HassService {
     const sensorData = {
       temperature: this.vehicleStatus?.additionalVehicleStatus?.climateStatus.interiorTemp,
       exterior_temperature: this.vehicleStatus?.additionalVehicleStatus?.climateStatus.exteriorTemp,
-      battery: this.vehicleStatus?.additionalVehicleStatus?.maintenanceStatus.mainBatteryStatus.chargeLevel,
+      battery: parseInt(this.vehicleStatus?.additionalVehicleStatus.electricVehicleStatus.chargeLevel ?? '0'),
       pm25: this.vehicleStatus?.additionalVehicleStatus?.pollutionStatus.interiorPM25Level,
       mileage: parseInt(this.vehicleStatus?.additionalVehicleStatus?.maintenanceStatus.odometer ?? '0'),
       range: this.vehicleStatus?.additionalVehicleStatus?.electricVehicleStatus.distanceToEmptyOnBatteryOnly,
