@@ -3,6 +3,10 @@ import { mqClient } from './utils/mq.js'
 import { hassService } from './services/hass.js'
 import { formatDateTime } from './utils/date.js'
 
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason)
+})
+
 async function doUpdate () {
   console.log(`[${formatDateTime(new Date())}] Updating vehicle status...`)
   const status = await getStatus()
@@ -17,6 +21,7 @@ async function main () {
     await doUpdate()
     setInterval(doUpdate, 60 * 1000)
   } catch (error) {
+    console.log(error)
   }
 }
 
